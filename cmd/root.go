@@ -65,43 +65,31 @@ func Execute() {
 	}
 }
 
-func GetClient() *gogs.Client {
-	fmt.Println("Getting client.")
-	return client
-}
-
-func initClient() {
-	fmt.Println("initClient")
-
-	url := viper.GetString("api_url")
-	token := viper.GetString("token")
-	fmt.Printf("api url: %v\n", url)
-	fmt.Printf("token: %v\n", token)
-
-	client = gogs.NewClient(url, token)
-}
-
 func init() {
 	cobra.OnInitialize(initConfig, initClient)
-
-	// url := viper.GetString("api_url")
-	// toke := viper.GetString("token")
-	// fmt.Printf("api url: %v", url)
-	// fmt.Printf("token: %v", toke)
-
-	// client = gogs.NewClient(url, toke)
 
 	// Here you will define your flags and configuration settings.
 	// Cobra supports Persistent Flags, which, if defined here,
 	// will be global for your application.
 
 	RootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.gogs-cli.yaml)")
-	// RootCmd.PersistentFlags().StringVar(&apiURL, "url", "", "api url should include /api/v1 path (default is try.gogs.io/api/v1)")
-	// RootCmd.PersistentFlags().StringVar(&tokenArg, "token", "", "token authorization (if not specified in cfg file)")
+	RootCmd.PersistentFlags().StringVar(&apiURL, "url", viper.GetString("api_url"), "api url should include /api/v1 path (default is try.gogs.io/api/v1)")
+	RootCmd.PersistentFlags().StringVar(&tokenArg, "token", viper.GetString("token"), "token authorization (if not specified in cfg file)")
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
 	RootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+}
+
+func GetClient() *gogs.Client {
+	fmt.Println("Getting client....")
+	return client
+}
+
+func initClient() {
+	url := viper.GetString("api_url")
+	token := viper.GetString("token")
+	client = gogs.NewClient(url, token)
 }
 
 // initConfig reads in config file and ENV variables if set.
@@ -121,15 +109,5 @@ func initConfig() {
 	} else {
 		fmt.Println("No configuration file found.")
 	}
-
-	// if api_url was flagged, set it to that (override cfg)
-	// if apiURL != "" {
-	// 	viper.Set("api_url", apiURL)
-	// }
-
-	// // if token was flagged, set it to that (override cfg)
-	// if tokenArg != "" {
-	// 	viper.Set("token", tokenArg)
-	// }
 
 }
