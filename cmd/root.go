@@ -18,12 +18,15 @@ import (
 	"fmt"
 	"os"
 
+	gogs "github.com/gogits/go-gogs-client"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
 
 var cfgFile string
 var apiURL string
+var tokenArg string
+var client *gogs.Client
 
 // RootCmd represents the base command when called without any subcommands
 var RootCmd = &cobra.Command{
@@ -39,7 +42,7 @@ $HOME/.gogs-cli.yaml. While you're there you can adjust the default to your liki
 	Run: func(cmd *cobra.Command, args []string) {
 		token := viper.GetString("token")
 		if token != "" {
-			fmt.Println("Token authentication enabled.")
+			fmt.Println("Token authentication enabled @ ", token)
 		} else {
 			fmt.Println("No token found.")
 		}
@@ -62,15 +65,40 @@ func Execute() {
 	}
 }
 
+func GetClient() *gogs.Client {
+	fmt.Println("Getting client.")
+	return client
+}
+
+func initClient() {
+	fmt.Println("initClient")
+
+	url := viper.GetString("api_url")
+	token := viper.GetString("token")
+	fmt.Printf("api url: %v\n", url)
+	fmt.Printf("token: %v\n", token)
+
+	client = gogs.NewClient(url, token)
+}
+
 func init() {
-	cobra.OnInitialize(initConfig)
+	cobra.OnInitialize(initConfig, initClient)
+
+	// url := viper.GetString("api_url")
+	// toke := viper.GetString("token")
+	// fmt.Printf("api url: %v", url)
+	// fmt.Printf("token: %v", toke)
+
+	// client = gogs.NewClient(url, toke)
 
 	// Here you will define your flags and configuration settings.
 	// Cobra supports Persistent Flags, which, if defined here,
 	// will be global for your application.
 
 	RootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.gogs-cli.yaml)")
-	RootCmd.PersistentFlags().StringVar(&apiURL, "url", "", "api url should include /api/v1 path (default is try.gogs.io/api/v1)")
+	// RootCmd.PersistentFlags().StringVar(&apiURL, "url", "", "api url should include /api/v1 path (default is try.gogs.io/api/v1)")
+	// RootCmd.PersistentFlags().StringVar(&tokenArg, "token", "", "token authorization (if not specified in cfg file)")
+
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
 	RootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
@@ -85,7 +113,7 @@ func initConfig() {
 	viper.SetConfigName(".gogs-cli") // name of config file (without extension)
 	viper.AddConfigPath("$HOME")     // adding home directory as first search path
 	viper.AutomaticEnv()             // read in environment variables that match
-	viper.SetDefault("api_url", "try.gogs.io/api/v1")
+	// viper.SetDefault("api_url", "try.gogs.io/api/v1")
 
 	// If a config file is found, read it in.
 	if err := viper.ReadInConfig(); err == nil {
@@ -95,8 +123,13 @@ func initConfig() {
 	}
 
 	// if api_url was flagged, set it to that (override cfg)
-	if apiURL != "" {
-		viper.Set("api_url", apiURL)
-	}
+	// if apiURL != "" {
+	// 	viper.Set("api_url", apiURL)
+	// }
+
+	// // if token was flagged, set it to that (override cfg)
+	// if tokenArg != "" {
+	// 	viper.Set("token", tokenArg)
+	// }
 
 }
