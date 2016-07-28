@@ -49,34 +49,45 @@ You can build for linux with the nifty `env GOOS=linux go build -o gogs`. You ca
 ## Usage.
 So far, you can do things. What's that? You can _do things_? Yep! Do things!
 ```bash
-# Create basic.
+# Create basic: 
 $ gogs repo create wheres-waldo # Create a repo owned by you.
-$ gogs repo [create|new|c|n] wheres-waldo # All the same thing (aliases).
-# Create fancy.
-$ gogs repo create wheres-waldo --desc 'awesome stuff' --private --org GophersGophering # Descriptively, privately, for an org you own.
-# Create fancy awesome.
-# --> Create a gogs remote and add it to your current working directory, 
-# initializing git if necessary.
+# Create fancy: 
+$ gogs repo create wheres-waldo --desc 'awesome stuff' --private --org GophersGophering
 $ gogs repo create where-waldo -r origin
 # [Aliases] for create. 
 $ gogs repo [create|new|c|n]
+# [Options] for create.
+[-n | --name] # Name (or plain old args[0] also work, as above, obviously)
+[-d | --desc] # Description
+[-o | --org] # Owned by a an organization you own
+[-p | --private] # Make repo private
+[-r | --add-remote] # Add newly created gogs repo as a remote to your current git dir, initalizing git if necessary
 
-# List basic.
+# List basic:
 $ gogs repo list # Get all yo repos.
-$ gogs repo list -l 2 # Get only 2 of your repos. 
 
-# Search basic.
-$ gogs repo search waldo
-# Search fancy.
-$ gogs repo search waldo --limit 1 --user thatguy # yep, flags are still optional (must specify user if searching for private repos)
+# Search basic:
+$ gogs repo search waldo # Search public repos for keyword 'waldo'.
+# Search fancy:
+$ gogs repo search waldo --limit 1 --user thatguy
 # [Aliases] for search.
 $ gogs repo [search|find|s|f]
+# [Options] for search.
+[-l | --limit] # Limit results
+[-u | --user] # By user, required if you want to search private repos
 
-# Destroy basic. (Watch out! Destroy won't ask twice. )
+# Destroy basic: 
 $ gogs repo destroy irstacks my-exterminable-repo
 $ gogs repo destroy irstacks/my-other-exterminable-repo
 # [Aliases] for destroy.
 $ gogs repo [destroy|delete|d|rid]
+
+# Help?!
+# Add --help after any command to see what's up, ie.
+$ gogs --help
+$ gogs repo --help
+$ gogs repo create --help
+# and so on...
 ```
 <br>
 <br>
