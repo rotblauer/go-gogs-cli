@@ -103,13 +103,6 @@ or, override your api url and token individually on the fly with flags `--token`
 $ gogs --url=http://some.other.company --token=qo23ransdlfknaw3oijr2323rasldf repo search waldo
 ```
 
-## Config.
-There's a file called `.go-gogs-cli.yaml` which handles configuring your __Gogs url__ and __token__, like such
-```yaml
-token: 0e6709o05da4753dddf5f592374fdc263f02n801
-api_url: http://my.goggers.me
-```
-Fill that in for your own self.
 <br>
 <br>
 You may have noticed that we're pretty heavy on the `gogs repo` and pretty light on the `gogs somethingelse` side of things. The [Gogs Client API](https://github.com/gogits/go-gogs-client) makes a bunch of endpoints and methods accessible for Users, Organizations, Issues, Admins, and so forth (although it's still very much a work in progress). Myself, I mostly just want to be able to create, search, and destroy like a fiend. If you would :heart: something and are unable to help yourself, let me know by opening an issue. 

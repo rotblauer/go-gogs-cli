@@ -99,7 +99,6 @@ func initConfig() {
 	viper.SetConfigName(".go-gogs-cli") // name of config file (without extension)
 	viper.AddConfigPath("$HOME")        // adding home directory as first search path
 	viper.AutomaticEnv()                // read in environment variables that match
-	// viper.SetDefault("api_url", "try.gogs.io/api/v1")
 
 	// If a config file is found, read it in.
 	if err := viper.ReadInConfig(); err == nil {
