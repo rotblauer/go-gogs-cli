@@ -94,7 +94,7 @@ func init() {
 }
 
 func GetClient() *gogs.Client {
-	fmt.Println("Getting client....")
+	// fmt.Println("Getting client....")
 	return client
 }
 

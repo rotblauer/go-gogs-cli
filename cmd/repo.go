@@ -9,8 +9,9 @@ import (
 
 // repoCmd represents the repo command
 var repoCmd = &cobra.Command{
-	Use:   "repo",
-	Short: "parent command for repositories",
+	Aliases: []string{"r"},
+	Use:     "repo",
+	Short:   "parent command for repositories",
 	Long: `gogs repo [(new|create)|list|destroy]
 
 	$ gogs repo new my-new-repo --private
@@ -20,30 +21,30 @@ var repoCmd = &cobra.Command{
 	$ gogs repo destroy ia/my-new-repo
 
 	`,
-	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Please use: gogs repo [(new|create)|list|destroy]")
-	},
+	// Run: func(cmd *cobra.Command, args []string) {
+	// 	fmt.Println("Please use: gogs repo [(new|create)|list|destroy]")
+	// },
 }
 
 func printRepo(repo *gogs.Repository) {
-	fmt.Println("------------------------------------------------")
-	fmt.Printf("* %v", repo.FullName)
+	fmt.Println()
+	fmt.Printf("| * %v", repo.FullName)
 	if repo.Private {
 		fmt.Printf(" (private)")
 	}
 	if repo.Fork {
 		fmt.Printf(" (fork)")
 	}
-	fmt.Println()
+	fmt.Println("")
 
 	if repo.Description != "" {
-		fmt.Println("[--> ", repo.Description)
+		fmt.Println("| --> ", repo.Description)
 	}
 
-	fmt.Println("Go there: ", repo.HtmlUrl)
-	fmt.Println("SSH:      ", repo.SshUrl)
-	fmt.Println("Clone it: ", repo.CloneUrl)
-	fmt.Println("------------------------------------------------")
+	fmt.Println("| HTML: ", repo.HtmlUrl)
+	fmt.Println("| SSH : ", repo.SshUrl)
+	fmt.Println("| GIT : ", repo.CloneUrl)
+	fmt.Println()
 }
 
 func init() {
