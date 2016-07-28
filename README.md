@@ -1,5 +1,5 @@
 # Gogs CLI
-Accesses the [Gogs Client API](https://github.com/gogits/go-gogs-client), currently available on [Gogs' `develop` branch](https://github.com/gogits/gogs/tree/develop).
+Accesses the [Gogs Client API](https://github.com/gogits/go-gogs-client), which is currently available exclusively on [Gogs' `develop` branch](https://github.com/gogits/gogs/tree/develop).
 
 > [Cobra](https://github.com/spf13/cobra) & [Viper](https://github.com/spf13/viper) go packages handle the hard work for the CLI interface.
 
