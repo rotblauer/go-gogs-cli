@@ -9,8 +9,9 @@ import (
 
 // destroyCmd represents the destroy command
 var destroyCmd = &cobra.Command{
-	Use:   "destroy [username repo-name | username/repo-name]",
-	Short: "Destroy a repo.",
+	Aliases: []string{"d", "delete", "rid"},
+	Use:     "destroy [username repo-name | username/repo-name]",
+	Short:   "Destroy a repo.",
 	Long: `destroy [username repo-name | username/repo-name]
 
 	$ destroy ia tester-repo
