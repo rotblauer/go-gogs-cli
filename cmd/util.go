@@ -1,3 +1,11 @@
+// This sucker is really annoying. Gogs Client says that search is a thing.
+// And it is, it does work.
+// But... I can't find it in the package. It's just not there. I've looked.
+// So this is a re-write of the respondering methods that are nonexported in
+// the Gogs Client package. Here they're used exclusively (and tweaked a little, as such)
+// for the search command.
+// It's dumb. I know.
+
 package cmd
 
 import (
@@ -66,5 +74,4 @@ func getParsedResponse(client *http.Client, method, path string, header http.Hea
 	}
 
 	return res.Data, err
-	// return json.Unmarshal(data, obj)
 }
