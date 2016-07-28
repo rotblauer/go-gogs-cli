@@ -6,7 +6,7 @@ Accesses the [Gogs Client API](https://github.com/gogits/go-gogs-client), which 
 
 ## Setup.
 
-_TLDR:_ Just make sure the `gogs` executable winds up somewhere in your `$PATH`.
+_TLDR:_ Just make sure the `gogs` executable winds up somewhere in your `$PATH`. Set your `GOGS_URL` and `GOGS_TOKEN` vars somehow.
 <br>
 <br>
 Clone the repo and build and install it yourself, or `go get github.com/irstacks/go-gogs-cli`. 
@@ -46,6 +46,12 @@ Now here you've got some options (probably) about in which of your $PATH's paths
 ```bash
 $ cp gogs ~/bin/
 ```
+
+... Or let Go decide where to put the executable for you. Just make sure your `$GOPATH/bin` is actually in your `$PATH`.
+```bash
+# This builds and moves the executable to $GOPATH/bin. 
+$ go install # From inside the base of the project.
+```
 <br>
 
 #### This repo's build is for darwin (Mac). 
@@ -54,16 +60,12 @@ If you're on a Mac and want to build it for your server or something, you can bu
 ## Config.
 Once you've got the project, you'll need to configure your own `GOGS_TOKEN` and `GOGS_URL` variables. 
 <br>
-You can use
-```bash
-$ go install # From inside the base of the project.
-```
-which'll create a file called `.go-gogs-cli.yaml` that likes to live at `$HOME/.go-gogs-cli.yaml`. It handles configuring your __Gogs url__ and __token__, like such:
+You can use a file called `.go-gogs-cli.yaml` that likes to live at `$HOME/.go-gogs-cli.yaml`. It handles configuring your __Gogs url__ and __token__, like such:
 ```yaml
 GOGS_TOKEN: 0e6709o05da4753dddf5f592374fdc263f02n801
 GOGS_URL: http://my.goggers.me
 ```
-Fill that in for your own self. 
+Make that file (there's an example in the repo) and fill that in for your own self. 
 <br>
 <br>
 __Or__, if you'd rather use environment variables, that'll work fine too. 

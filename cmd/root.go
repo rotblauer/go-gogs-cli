@@ -104,7 +104,7 @@ func initConfig() {
 	if err := viper.ReadInConfig(); err == nil {
 		// fmt.Println("Using config file:", viper.ConfigFileUsed())
 	} else {
-		fmt.Println("No configuration file found. Is there for sure one at " + viper.ConfigFileUsed() + "?")
+		fmt.Println("No configuration file found. Is there for sure one at $HOME/.go-gogs-cli.yaml?")
 	}
 
 }
