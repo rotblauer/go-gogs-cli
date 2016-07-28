@@ -3,7 +3,6 @@ Accesses the [Gogs Client API](https://github.com/gogits/go-gogs-client), which 
 
 > [Cobra](https://github.com/spf13/cobra) & [Viper](https://github.com/spf13/viper) go packages handle the hard work for the CLI interface.
 
-Very much still a __work in progress__. That's in bold. 
 
 ## Setup.
 Clone the repo and build it yourself, or `go get github.com/irstacks/go-gogs-cli`. Just make sure the `gogs` executable winds up somewhere in your `$PATH`.
