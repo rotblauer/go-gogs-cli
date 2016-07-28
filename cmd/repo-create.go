@@ -28,10 +28,7 @@ var createCmd = &cobra.Command{
 	$ gogs repo create -n=my-new-repo
 	$ gogs repo create my-new-repo --desc="a thing with things" --org=JustUsGuys -p=true
 	$ gogs repo new my-new-repo --private
-
-	Add your new repo as a remote to your working dir:
-
-	$ gogs repo create my-new-repo --add-remote=origin`,
+	$ gogs repo create my-new-repo --add-remote=origin    Will initialize git if not already, too.`,
 	Run: func(cmd *cobra.Command, args []string) {
 
 		// accept gogs repo create thingeys || gogs repo create -name=thingeys

@@ -49,13 +49,34 @@ You can build for linux with the nifty `env GOOS=linux go build -o gogs`. You ca
 ## Usage.
 So far, you can do things. What's that? You can _do things_? Yep! Do things!
 ```bash
-$ gogs repo create my-new-repo --desc 'awesome stuff' --private --org GophersGophering # optional flag [-n|--name] if you want to be very particular
-$ gogs repo new my-new-repo # new is an alias for create, and you don't have to use any flags if you don't want to
-$ gogs repo list # get all yo repos
-$ gogs repo search waldo --limit 1 --user thatguy # yep, flags are still optional
-$ gogs repo find waldo # another alias
+# Create basic.
+$ gogs repo create wheres-waldo # Create a repo owned by you.
+$ gogs repo [create|new|c|n] wheres-waldo # All the same thing (aliases).
+# Create fancy.
+$ gogs repo create wheres-waldo --desc 'awesome stuff' --private --org GophersGophering # Descriptively, privately, for an org you own.
+# Create fancy awesome.
+# --> Create a gogs remote and add it to your current working directory, 
+# initializing git if necessary.
+$ gogs repo create where-waldo -r origin
+# [Aliases] for create. 
+$ gogs repo [create|new|c|n]
+
+# List basic.
+$ gogs repo list # Get all yo repos.
+$ gogs repo list -l 2 # Get only 2 of your repos. 
+
+# Search basic.
+$ gogs repo search waldo
+# Search fancy.
+$ gogs repo search waldo --limit 1 --user thatguy # yep, flags are still optional (must specify user if searching for private repos)
+# [Aliases] for search.
+$ gogs repo [search|find|s|f]
+
+# Destroy basic. (Watch out! Destroy won't ask twice. )
 $ gogs repo destroy irstacks my-exterminable-repo
 $ gogs repo destroy irstacks/my-other-exterminable-repo
+# [Aliases] for destroy.
+$ gogs repo [destroy|delete|d|rid]
 ```
 <br>
 <br>
