@@ -43,7 +43,7 @@ Now here you've got some options (probably) about in which of your $PATH's paths
 $ cp gogs ~/bin/
 ```
 
-__This repo's build is for darwin (Mac)__. You can build for linux with the nifty `env GOOS=linux go build -o gogs`. You can probably build for Window too but I don't trouble myself with such things.
+__This repo's build is for darwin (Mac)__. You can build for linux with the nifty `env GOOS=linux go build -o gogs`. You can probably build for Windows too but I don't trouble myself with such things.
 
 ## Usage.
 So far, you can do things like...
