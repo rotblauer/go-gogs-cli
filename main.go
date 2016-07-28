@@ -14,7 +14,7 @@
 
 package main
 
-import "github.com/irstacks/gogs-cli/cmd"
+import "github.com/irstacks/go-gogs-cli/cmd"
 
 func main() {
 	cmd.Execute()

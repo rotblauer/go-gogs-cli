@@ -1,17 +1,3 @@
-// Copyright © 2016 NAME HERE <EMAIL ADDRESS>
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 package cmd
 
 import (
@@ -24,34 +10,42 @@ import (
 // repoCmd represents the repo command
 var repoCmd = &cobra.Command{
 	Use:   "repo",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
+	Short: "parent command for repositories",
+	Long: `gogs repo [(new|create)|list|destroy]
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	$ gogs repo new my-new-repo --private
+	$ gogs repo create my-new-repo --org=JustUsGuys
+	$ gogs repo list
+	$ gogs repo destroy ia my-new-repo
+	$ gogs repo destroy ia/my-new-repo
+
+	`,
 	Run: func(cmd *cobra.Command, args []string) {
-		// TODO: Work your own magic here
-		fmt.Println("repo called")
+		fmt.Println("Please use: gogs repo [(new|create)|list|destroy]")
 	},
 }
 
 func printRepo(repo *gogs.Repository) {
-	fmt.Printf("Name: %v\nGit url: %v\n\n", repo.FullName, repo.CloneUrl)
+	fmt.Println("------------------------------------------------")
+	fmt.Printf("* %v", repo.FullName)
+	if repo.Private {
+		fmt.Printf(" (private)")
+	}
+	if repo.Fork {
+		fmt.Printf(" (fork)")
+	}
+	fmt.Println()
+
+	if repo.Description != "" {
+		fmt.Println("[--> ", repo.Description)
+	}
+
+	fmt.Println("Go there: ", repo.HtmlUrl)
+	fmt.Println("SSH:      ", repo.SshUrl)
+	fmt.Println("Clone it: ", repo.CloneUrl)
+	fmt.Println("------------------------------------------------")
 }
 
 func init() {
 	RootCmd.AddCommand(repoCmd)
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// repoCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// repoCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
-
 }

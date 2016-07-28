@@ -34,15 +34,27 @@ var RootCmd = &cobra.Command{
 	Short: "Connect to the Gogs API.",
 	Long: `Welcome to the Gogs CLI.
 
-You'll probably want a token for interacting with private data. 
-Visit your profile settings on Gogs and create a token, then stick it into
-$HOME/.gogs-cli.yaml. While you're there you can adjust the default to your liking, too.`,
+You'll probably, almost certainly, want a token for interacting with private data.
+
+Visit your Profile Settings on Gogs and *create a token*.
+
+You'll stick that into the default config file named below, 
+where you'll also want to *set your base Gogs url*.
+	
+	$HOME/.go-gogs-cli.yaml 
+
+Recap:
+	- get a token from the Gogs UI Profile/settings page.
+	- put the token into the config file name above, along with 
+	- the base url for your Gogs instance.
+
+There's an example .go-gogs-cli.yaml`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	Run: func(cmd *cobra.Command, args []string) {
 		token := viper.GetString("token")
 		if token != "" {
-			fmt.Println("Token authentication enabled @ ", token)
+			fmt.Println("Token authentication enabled.")
 		} else {
 			fmt.Println("No token found.")
 		}
@@ -98,16 +110,16 @@ func initConfig() {
 		viper.SetConfigFile(cfgFile)
 	}
 
-	viper.SetConfigName(".gogs-cli") // name of config file (without extension)
-	viper.AddConfigPath("$HOME")     // adding home directory as first search path
-	viper.AutomaticEnv()             // read in environment variables that match
+	viper.SetConfigName(".go-gogs-cli") // name of config file (without extension)
+	viper.AddConfigPath("$HOME")        // adding home directory as first search path
+	viper.AutomaticEnv()                // read in environment variables that match
 	// viper.SetDefault("api_url", "try.gogs.io/api/v1")
 
 	// If a config file is found, read it in.
 	if err := viper.ReadInConfig(); err == nil {
-		fmt.Println("Using config file:", viper.ConfigFileUsed())
+		// fmt.Println("Using config file:", viper.ConfigFileUsed())
 	} else {
-		fmt.Println("No configuration file found.")
+		fmt.Println("No configuration file found. Is there for sure one at " + viper.ConfigFileUsed() + "?")
 	}
 
 }
