@@ -28,7 +28,7 @@ func getResponse(client *http.Client, method, url string, header http.Header, bo
 	if err != nil {
 		return nil, err
 	}
-	req.Header.Set("Authorization", "token "+viper.GetString("token"))
+	req.Header.Set("Authorization", "token "+viper.GetString("GOGS_TOKEN"))
 	for k, v := range header {
 		req.Header[k] = v
 	}

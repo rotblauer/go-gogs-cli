@@ -30,7 +30,7 @@ func searchRepos(uid, query, limit string) ([]*gogs.Repository, error) {
 	client := &http.Client{}
 	path := "/api/v1/repos/search?q=" + query + "&uid=" + uid + "&limit=" + limit
 
-	repos, err := getParsedResponse(client, "GET", viper.GetString("api_url")+path, nil, nil)
+	repos, err := getParsedResponse(client, "GET", viper.GetString("GOGS_URL")+path, nil, nil)
 
 	return repos, err
 }

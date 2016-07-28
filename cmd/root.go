@@ -38,14 +38,14 @@ There's an example .go-gogs-cli.yaml`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	Run: func(cmd *cobra.Command, args []string) {
-		token := viper.GetString("token")
+		token := viper.GetString("GOGS_TOKEN")
 		if token != "" {
 			fmt.Println("Token authentication enabled.")
 		} else {
 			fmt.Println("No token found.")
 		}
 
-		url := viper.GetString("api_url")
+		url := viper.GetString("GOGS_URL")
 		if url != "" {
 			fmt.Println("Using API url @ ", url)
 		} else {
@@ -71,8 +71,8 @@ func init() {
 	// will be global for your application.
 
 	RootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.gogs-cli.yaml)")
-	RootCmd.PersistentFlags().StringVar(&apiURL, "url", viper.GetString("api_url"), "api url should include /api/v1 path (default is try.gogs.io/api/v1)")
-	RootCmd.PersistentFlags().StringVar(&tokenArg, "token", viper.GetString("token"), "token authorization (if not specified in cfg file)")
+	RootCmd.PersistentFlags().StringVar(&apiURL, "url", viper.GetString("GOGS_URL"), "api url should include /api/v1 path (default is try.gogs.io/api/v1)")
+	RootCmd.PersistentFlags().StringVar(&tokenArg, "token", viper.GetString("GOGS_TOKEN"), "token authorization (if not specified in cfg file)")
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
@@ -85,8 +85,8 @@ func GetClient() *gogs.Client {
 }
 
 func initClient() {
-	url := viper.GetString("api_url")
-	token := viper.GetString("token")
+	url := viper.GetString("GOGS_URL")
+	token := viper.GetString("GOGS_TOKEN")
 	client = gogs.NewClient(url, token)
 }
 

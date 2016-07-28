@@ -5,7 +5,7 @@ Accesses the [Gogs Client API](https://github.com/gogits/go-gogs-client), which 
 
 
 ## Setup.
-Clone the repo and build it yourself, or `go get github.com/irstacks/go-gogs-cli`. Just make sure the `gogs` executable winds up somewhere in your `$PATH`.
+Clone the repo and build and install it yourself, or `go get github.com/irstacks/go-gogs-cli`. Just make sure the `gogs` executable winds up somewhere in your `$PATH`.
 
 Oh, _but how do you build it?_, you ask? _What path?_ you ask? 
 
@@ -26,14 +26,14 @@ $ git clone https://github.com/irstacks/go-gogs-cli.git
 $ go get stuff
 $ go get morestuff
 ```
-Now, I say almost-as-marvelous because if you use `git clone` you may run into issues about your $GOPATH. It happens. Since I haven't figured out how to consistently `go get` all the dependencies I need for a given Go project from esoteric locations outside my $GOPATH (in part because I have so many esoteric locations and don't want to haggle with forever adjusting/amending my $GOPATH extensioners), I usually just wind up running `go run main.go` or `go build -o gogs` and `go get`ting the dependencies it complains about one-by-one. I know, it sucks. But that's just how I roll sometimes. 
+I say almost-as-marvelous because if you use `git clone` you may run into issues about your $GOPATH. It happens. Since I haven't figured out how to consistently `go get` all the dependencies I need for a given Go project from esoteric locations outside my $GOPATH (in part because I have so many esoteric locations and don't want to haggle with forever adjusting/amending my $GOPATH extensioners), I usually just wind up running `go run main.go` or `go build -o gogs` and `go get`ting the dependencies it complains about one-by-one. I know, it sucks. But that's just how I roll sometimes. 
 <br>
 <br>
-Finally, we can build the sucker.
+Finally, we can build the sucker (this is __optional__ -- the repo comes with a build `gogs`).
 ```bash
 $ go build -o gogs
 ```
-Here we're using -o to tell go where to build the build it makes, in this case a file in the same directory we're with the name 'gogs' (because thats a lot shorter than go-gogs-cli). Note that whatever you name this file it what it will be accessible for you as on the CLI. So if you name it 'goo' (awesome.), then your commands will be all like: `$ goo repo new ...` 
+Here we're using -o to tell go where to build the build it makes, in this case a file in the same directory we're with the name `gogs` (because thats a lot shorter than 'go-gogs-cli'). Note that whatever you name this file is what it will be accessible for you as on the CLI. So if you name it 'goo' (awesome.), then your commands will be all like: `$ goo repo new ...` 
 
 Now here you've got some options (probably) about in which of your $PATH's paths you want to stick it. I like to keep my custom thingeys out of the dredges, so I stick mine in `$HOME/bin/`
 <br>
@@ -44,7 +44,28 @@ $ cp gogs ~/bin/
 <br>
 
 #### This repo's build is for darwin (Mac). 
-You can build for linux with the nifty `env GOOS=linux go build -o gogs`. You can probably build for Windows too but I don't trouble myself with such things.
+If you're on a Mac and want to build it for your server or something, you can build for linux with the nifty `env GOOS=linux go build -o gogs`. You can probably build for Windows too but I don't trouble myself with such things.
+
+## Config.
+Once you've got the project, you'll need to configure your own `GOGS_TOKEN` and `GOGS_URL` variables. 
+<br>
+You can use
+```bash
+$ go install # From inside the base of the project.
+```
+which'll create a file called `.go-gogs-cli.yaml` that likes to live at `$HOME/.go-gogs-cli.yaml`. It handles configuring your __Gogs url__ and __token__, like such:
+```yaml
+GOGS_TOKEN: 0e6709o05da4753dddf5f592374fdc263f02n801
+GOGS_URL: http://my.goggers.me
+```
+Fill that in for your own self. 
+<br>
+<br>
+__Or__, if you'd rather use environment variables, that'll work fine too. 
+```bash
+export GOGS_TOKEN=asdlfj239r029fzsfasf923r23f
+export GOGS_URL=http://my.goggers.me
+```
 
 ## Usage.
 So far, you can do things. What's that? You can _do things_? Yep! Do things!

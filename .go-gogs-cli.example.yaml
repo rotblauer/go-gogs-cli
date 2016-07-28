@@ -1,5 +1,10 @@
 # This file will by default live in $HOME/.go-gogs-cli.yaml. 
 # You can put it anywhere else, too, but you'll need to tell go-gogs-cli
 # about it in cmd/root.go (down in initConfig).
-token: 0e6709o05da4753dddf5f592074fdc263f02n801
-api_url: http://my.goggers.me
+# 
+# Or, you can not use this file and instead set these as ENV variables, like
+# export GOGS_TOKEN=qorudfjasij3290r23rkansfj23asdf
+# export GOGS_URL=http://my.goggers.me
+# 
+GOGS_TOKEN: 0e6709o05da4753dddf5f592074fdc263f02n801
+GOGS_URL: http://my.goggers.me
