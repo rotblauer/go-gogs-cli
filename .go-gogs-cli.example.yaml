@@ -2,6 +2,4 @@
 # You can put it anywhere else, too, but you'll need to tell go-gogs-cli
 # about it in cmd/root.go (down in initConfig).
 token: 0e6709o05da4753dddf5f592074fdc263f02n801
-api_url: http://goggable.areteh.co:3000/api/v1
-default:
-  q_limit: 10
+api_url: http://my.goggers.me

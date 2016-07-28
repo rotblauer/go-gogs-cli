@@ -41,20 +41,46 @@ Now here you've got some options (probably) about in which of your $PATH's paths
 ```bash
 $ cp gogs ~/bin/
 ```
+<br>
 
-__This repo's build is for darwin (Mac)__. You can build for linux with the nifty `env GOOS=linux go build -o gogs`. You can probably build for Windows too but I don't trouble myself with such things.
+#### This repo's build is for darwin (Mac). 
+You can build for linux with the nifty `env GOOS=linux go build -o gogs`. You can probably build for Windows too but I don't trouble myself with such things.
 
 ## Usage.
-So far, you can do things like...
+So far, you can do things. What's that? You can _do things_? Yep! Do things!
 ```bash
 $ gogs repo create my-new-repo --desc 'awesome stuff' --private --org GophersGophering # optional flag [-n|--name] if you want to be very particular
-$ gogs repo new my-new-repo # new is an alias for create
+$ gogs repo new my-new-repo # new is an alias for create, and you don't have to use any flags if you don't want to
 $ gogs repo list # get all yo repos
+$ gogs repo search waldo --limit 1 --user thatguy # yep, flags are still optional
+$ gogs repo find waldo # another alias
 $ gogs repo destroy irstacks my-exterminable-repo
 $ gogs repo destroy irstacks/my-other-exterminable-repo
 ```
+<br>
+<br>
+__Oh, you're hot shit and use n > 1 Gogs?__ _Sweet_.
+<br> 
+You can override your api and token by flagging a config file with the `--config` flag (like such)
+```bash
+$ gogs --config="$HOME/sneaky/place/.go-gogs-cli.yaml" repo create newjunk
+```
+<br>
+or, override your api url and token individually on the fly with flags `--token` and `--url` for any command, like so:
+```bash
+$ gogs --url=http://some.other.company --token=qo23ransdlfknaw3oijr2323rasldf repo search waldo
+```
 
-The [Gogs Client API](https://github.com/gogits/go-gogs-client) makes a bunch of endpoints and methods accessible for Users, Organizations, Issues, Admins, and so forth. Myself, I mostly just want to be able to create and destroy fanatically. If you would :heart: something and are unable to help yourself, let me know by opening an issue. 
+## Config.
+There's a file called `.go-gogs-cli.yaml` which handles configuring your __Gogs url__ and __token__, like such
+```yaml
+token: 0e6709o05da4753dddf5f592374fdc263f02n801
+api_url: http://my.goggers.me
+```
+Fill that in for your own self.
+<br>
+<br>
+You may have noticed that we're pretty heavy on the `gogs repo` and pretty light on the `gogs somethingelse` side of things. The [Gogs Client API](https://github.com/gogits/go-gogs-client) makes a bunch of endpoints and methods accessible for Users, Organizations, Issues, Admins, and so forth (although it's still very much a work in progress). Myself, I mostly just want to be able to create, search, and destroy like a fiend. If you would :heart: something and are unable to help yourself, let me know by opening an issue. 
 
 ## Help out.
-Please do!
+:clap: [chanting] Do it! Do it! Do it!
