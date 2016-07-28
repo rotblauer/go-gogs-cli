@@ -5,7 +5,11 @@ Accesses the [Gogs Client API](https://github.com/gogits/go-gogs-client), which 
 
 
 ## Setup.
-Clone the repo and build and install it yourself, or `go get github.com/irstacks/go-gogs-cli`. Just make sure the `gogs` executable winds up somewhere in your `$PATH`.
+
+_TLDR:_ Just make sure the `gogs` executable winds up somewhere in your `$PATH`.
+<br>
+<br>
+Clone the repo and build and install it yourself, or `go get github.com/irstacks/go-gogs-cli`. 
 
 Oh, _but how do you build it?_, you ask? _What path?_ you ask? 
 
@@ -17,8 +21,9 @@ $ go get github.com/irstacks/go-gogs-cli
 $ cd $GOPATH/src/irstacks/go-gogs-cli
 $ go get ./...
 ```
-
-With the almost-as-marvelous `git clone`...
+<br>
+<br>
+__Or__, with the almost-as-marvelous `git clone`...
 ```bash
 $ cd where/i/like/to/put/funky/things
 $ git clone https://github.com/irstacks/go-gogs-cli.git
@@ -31,7 +36,7 @@ I say almost-as-marvelous because if you use `git clone` you may run into issues
 <br>
 Finally, we can build the sucker (this is __optional__ -- the repo comes with a build `gogs`).
 ```bash
-$ go build -o gogs
+$ go build -o gogs # Building it yourself will make sure the executable fits your OS and architecture. 
 ```
 Here we're using -o to tell go where to build the build it makes, in this case a file in the same directory we're with the name `gogs` (because thats a lot shorter than 'go-gogs-cli'). Note that whatever you name this file is what it will be accessible for you as on the CLI. So if you name it 'goo' (awesome.), then your commands will be all like: `$ goo repo new ...` 
 
