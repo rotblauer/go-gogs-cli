@@ -55,7 +55,7 @@ $ gogs repo destroy irstacks my-exterminable-repo
 $ gogs repo destroy irstacks/my-other-exterminable-repo
 ```
 
-The [Gogs Client API](https://github.com/gogits/go-gogs-client) makes a bunch of endpoints and methods accessible for Users, Organizations, Issues, Admins, and so forth. Myself, I mostly just want to be able to create and destroy fanatically. If you would :love: something and are unable to help yourself, let me know by opening an issue. 
+The [Gogs Client API](https://github.com/gogits/go-gogs-client) makes a bunch of endpoints and methods accessible for Users, Organizations, Issues, Admins, and so forth. Myself, I mostly just want to be able to create and destroy fanatically. If you would :heart: something and are unable to help yourself, let me know by opening an issue. 
 
 ## Help out.
 Please do!
