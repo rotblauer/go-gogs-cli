@@ -37,19 +37,18 @@ var createCmd = &cobra.Command{
 		}
 		// Moving to use MyCompany/new-project as way to specify organization instead of
 		// --org flag.
-		fullRepoName := args
-		if len(fullRepoName) == 1 {
-			splitter := strings.Split(fullRepoName, "/")
+		if len(args) == 1 {
+			splitter := strings.Split(args[0], "/")
 			if len(splitter) == 2 {
 				orgName = splitter[0]
 				repoName = splitter[1]
 			} else {
-				repoName = fullRepoName
+				repoName = args[0]
 			}
 		} else {
 			// we got MyCompany new-project
-			orgName = fullRepoName[0]
-			repoName = fullRepoName[1] // this'll take 'cactus' of MyCompany cactus spikey --private; spikey will be igored... FIXME?
+			orgName = args[0]
+			repoName = args[1] // this'll take 'cactus' of MyCompany cactus spikey --private; spikey will be igored... FIXME?
 		}
 
 		createRepoOpts := gogs.CreateRepoOption{
