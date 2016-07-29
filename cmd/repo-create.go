@@ -23,17 +23,33 @@ var createCmd = &cobra.Command{
 	Short:   "Create a repository",
 	Long: `create [my-new-repo | [-n | --name]] [-d | --desc]  [-org | --org] [-p | --private] [-r | --add-remote]]
 
-	$ gogs repo create my-new-repo 
+	$ gogs repo create my-new-repo
 	$ gogs repo new my-new-repo
 	$ gogs repo create -n=my-new-repo
-	$ gogs repo create my-new-repo --desc="a thing with things" --org=JustUsGuys -p=true
+	$ gogs repo create JustUsGuys/my-new-repo --desc="a thing with things" -p=true
 	$ gogs repo new my-new-repo --private
 	$ gogs repo create my-new-repo --add-remote=origin    Will initialize git if not already, too.`,
 	Run: func(cmd *cobra.Command, args []string) {
 
-		// accept gogs repo create thingeys || gogs repo create -name=thingeys
-		if repoName == "" {
-			repoName = args[0]
+		if len(args) == 0 {
+			fmt.Println("Please argue me a name of a repo to create.")
+			return
+		}
+		// Moving to use MyCompany/new-project as way to specify organization instead of
+		// --org flag.
+		fullRepoName := args
+		if len(fullRepoName) == 1 {
+			splitter := strings.Split(fullRepoName, "/")
+			if len(splitter) == 2 {
+				orgName = splitter[0]
+				repoName = splitter[1]
+			} else {
+				repoName = fullRepoName
+			}
+		} else {
+			// we got MyCompany new-project
+			orgName = fullRepoName[0]
+			repoName = fullRepoName[1] // this'll take 'cactus' of MyCompany cactus spikey --private; spikey will be igored... FIXME?
 		}
 
 		createRepoOpts := gogs.CreateRepoOption{
@@ -127,10 +143,10 @@ var createCmd = &cobra.Command{
 func init() {
 	repoCmd.AddCommand(createCmd)
 
-	createCmd.Flags().StringVarP(&repoName, "name", "n", "", "repo name")
+	// createCmd.Flags().StringVarP(&repoName, "name", "n", "", "repo name")
 	createCmd.Flags().StringVarP(&repoDescription, "desc", "d", "", "repo description")
 	createCmd.Flags().BoolVarP(&repoIsPrivate, "private", "p", false, "repo is private")
-	createCmd.Flags().StringVarP(&orgName, "org", "o", "", "organization")
+	// createCmd.Flags().StringVarP(&orgName, "org", "o", "", "organization")
 
 	createCmd.Flags().StringVarP(&repoRemoteName, "add-remote", "r", "", "remote name")
 }
