@@ -19,14 +19,14 @@ var repoRemoteName string
 
 var createCmd = &cobra.Command{
 	Aliases: []string{"new", "n", "c"},
-	Use:     "create",
+	Use:     "create <name>",
 	Short:   "Create a repository",
-	Long: `create [my-new-repo | [-n | --name]] [-d | --desc]  [-org | --org] [-p | --private] [-r | --add-remote]]
+	Long: `create my-new-repo | MyOrg/our-new-repo [-d | --desc] [-p | --private] [-r | --add-remote]]
 
 	$ gogs repo create my-new-repo
 	$ gogs repo new my-new-repo
 	$ gogs repo create -n=my-new-repo
-	$ gogs repo create JustUsGuys/my-new-repo --desc="a thing with things" -p=true
+	$ gogs repo create JustUsGuys/our-new-repo --desc="a thing with things" -p=true
 	$ gogs repo new my-new-repo --private
 	$ gogs repo create my-new-repo --add-remote=origin    Will initialize git if not already, too.`,
 	Run: func(cmd *cobra.Command, args []string) {
