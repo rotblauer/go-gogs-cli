@@ -10,7 +10,7 @@ import (
 )
 
 var cfgFile string
-var apiURL string
+var apiURLArg string
 var tokenArg string
 var client *gogs.Client
 
@@ -65,16 +65,12 @@ func init() {
 	// will be global for your application.
 
 	RootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.gogs-cli.yaml)")
-	RootCmd.PersistentFlags().StringVar(&apiURL, "url", viper.GetString("GOGS_URL"), "api url should include /api/v1 path (default is try.gogs.io/api/v1)")
-	RootCmd.PersistentFlags().StringVar(&tokenArg, "token", viper.GetString("GOGS_TOKEN"), "token authorization (if not specified in cfg file)")
+	RootCmd.PersistentFlags().StringVar(&apiURLArg, "url", "", "api url should include /api/v1 path (default is try.gogs.io/api/v1)")
+	RootCmd.PersistentFlags().StringVar(&tokenArg, "token", "", "token authorization (if not specified in cfg file)")
 
-	// Cobra also supports local flags, which will only run
-	// when this action is called directly.
-	RootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
 
 func GetClient() *gogs.Client {
-	// fmt.Println("Getting client....")
 	return client
 }
 
@@ -101,4 +97,12 @@ func initConfig() {
 		fmt.Println("No configuration file found. Is there for sure one at $HOME/.go-gogs-cli.yaml?")
 	}
 
+	// These should override any configFile or env vars. 
+	if tokenArg != "" {
+		viper.Set("token", tokenArg)
+	}
+
+	if apiURLArg != "" {
+		viper.Set("url", apiURLArg)
+	}
 }
