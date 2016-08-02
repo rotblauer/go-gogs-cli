@@ -1,16 +1,10 @@
-// This sucker is really annoying. Gogs Client says that search is a thing.
-// And it is, it does work.
-// But... I can't find it in the package. It's just not there. I've looked.
-// So this is a re-write of the respondering methods that are nonexported in
-// the Gogs Client package. Here they're used exclusively (and tweaked a little, as such)
-// for the search command.
-// It's dumb. I know.
 
 package cmd
 
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -18,6 +12,26 @@ import (
 	gogs "github.com/gogits/go-gogs-client"
 	"github.com/spf13/viper"
 )
+
+// Useful for getting dat uid.
+func getUserByName(userName string) (user *gogs.User, err error) {
+	user, err = GetClient().GetUserInfo(userName)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	return user, err
+}
+
+
+// This sucker is really annoying. Gogs Client says that search is a thing.
+// And it is, it does work.
+// But... I can't find it in the package. It's just not there. I've looked.
+// So this is a re-write of the respondering methods that are nonexported in
+// the Gogs Client package. Here they're used exclusively (and tweaked a little, as such)
+// for the search command.
+// It's dumb. I know.
 
 type expRes struct {
 	Data []*gogs.Repository `json:"data"`

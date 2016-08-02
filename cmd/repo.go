@@ -17,6 +17,7 @@ var repoCmd = &cobra.Command{
 	$ gogs repo new my-new-repo --private
 	$ gogs repo create my-new-repo --org=JustUsGuys
 	$ gogs repo list
+	$ gogs repo migrate ia/my-copy-cat https://github.com/gogits/gogs.git
 	$ gogs repo destroy ia my-new-repo
 	$ gogs repo destroy ia/my-new-repo
 

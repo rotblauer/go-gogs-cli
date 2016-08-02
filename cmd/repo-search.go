@@ -15,16 +15,6 @@ import (
 var limit string // max num results
 var userName string
 
-func getUserByName(userName string) (user *gogs.User, err error) {
-	user, err = GetClient().GetUserInfo(userName)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-
-	return user, err
-}
-
 func searchRepos(uid, query, limit string) ([]*gogs.Repository, error) {
 
 	client := &http.Client{}
