@@ -20,23 +20,17 @@ var RootCmd = &cobra.Command{
 	Short: "Connect to the Gogs API.",
 	Long: `Welcome to the Gogs CLI.
 
-You'll probably, almost certainly, want a token for interacting with private data.
+$ gogs
+  --config   path to config file (default $HOME/.go-gogs-cli.yaml; or you can set GOGS_TOKEN and GOGS_URL env vars)
+  --config="$HOME/.my-own-gogs-cli-file.yaml"
 
-Visit your Profile Settings on Gogs and *create a token*.
-
-You'll stick that into the default config file named below, 
-where you'll also want to *set your base Gogs url*.
-	
-	$HOME/.go-gogs-cli.yaml 
-
-Recap:
-	- get a token from the Gogs UI Profile/settings page.
-	- put the token into the config file name above, along with 
-	- the base url for your Gogs instance.
-
-There's an example .go-gogs-cli.yaml`,
-	// Uncomment the following line if your bare application
-	// has an action associated with it:
+$ gogs [repo|r]
+$ gogs          [create|c|new|n]
+                [migrate|m]
+                [list]
+                [search|find|s|f]
+                [delete|destroy|rid|d]
+`,
 	Run: func(cmd *cobra.Command, args []string) {
 		token := viper.GetString("GOGS_TOKEN")
 		if token != "" {
