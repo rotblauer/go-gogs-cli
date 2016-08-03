@@ -76,7 +76,7 @@ export GOGS_URL=http://my.goggers.me
 
 ## Usage.
 So far, you can do things. What's that? You can _do things_? Yep! Do things!
-```bash
+```shell
 # Create basic:
 $ gogs repo create wheres-waldo # Create a repo owned by you.
 # Create fancy:
@@ -89,7 +89,7 @@ $ gogs repo [create|new|c|n]
 # [-p | --private] # Make repo private
 # [-r | --add-remote] # Add newly created gogs repo as a remote to your current git dir, initalizing git if necessary
 ```
-```bash
+```shell
 # Migrate:
 $ gogs repo migrate <myusername or my org's username>/mirror-mirror https://github.com/gogits/gogs.git
 # [Aliases] for migrate
@@ -98,13 +98,13 @@ $ gogs repo [migrate|m]
 # [-m | --mirror] # Make it a mirror of the original.
 # [-p | --private] # Make it private.
 ```
-```bash
+```shell
 # List basic:
 $ gogs repo list # Get all yo repos.
 # [Aliases]
 $ gogs repo [list|l]
 ```
-```bash
+```shell
 # Search basic:
 $ gogs repo search waldo # Search public repos for keyword 'waldo'.
 # Search fancy:
@@ -115,14 +115,14 @@ $ gogs repo [search|find|s|f]
 # [-l | --limit] # Limit results
 # [-u | --user] # By user, required if you want to search private repos
 ```
-```bash
+```shell
 # Destroy basic:
 $ gogs repo destroy irstacks my-exterminable-repo
 $ gogs repo destroy irstacks/my-other-exterminable-repo
 # [Aliases] for destroy.
 $ gogs repo [destroy|delete|d|rid]
 ```
-```bash
+```shell
 # Help?!
 # Add --help after any command to see what's up, ie.
 $ gogs --help
