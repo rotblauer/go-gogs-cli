@@ -84,35 +84,45 @@ $ gogs repo create Gophers/wheres-waldo --desc='awesome stuff' --private
 $ gogs repo create where-waldo -r origin
 # [Aliases] for create.
 $ gogs repo [create|new|c|n]
-# [Options] for create.
-[-d | --desc] # Description
-[-p | --private] # Make repo private
-[-r | --add-remote] # Add newly created gogs repo as a remote to your current git dir, initalizing git if necessary
-
+```
+[Options] for create.
+- [-d | --desc] # Description
+- [-p | --private] # Make repo private
+- [-r | --add-remote] # Add newly created gogs repo as a remote to your current git dir, initalizing git if necessary
+```bash
 # Migrate:
 $ gogs repo migrate <myusername or my org's username>/mirror-mirror https://github.com/gogits/gogs.git
-[-m | --mirror] # Make it a mirror of the original.
-[-p | --private] # Make it private.
-
+# [Aliases] for migrate
+$ gogs repo [migrate|m]
+```
+[Options] for migrate
+- [-m | --mirror] # Make it a mirror of the original.
+- [-p | --private] # Make it private.
+```bash
 # List basic:
 $ gogs repo list # Get all yo repos.
-
+# [Aliases]
+$ gogs repo [list|l]
+```
+```bash
 # Search basic:
 $ gogs repo search waldo # Search public repos for keyword 'waldo'.
 # Search fancy:
 $ gogs repo search waldo --limit 1 --user thatguy
 # [Aliases] for search.
 $ gogs repo [search|find|s|f]
-# [Options] for search.
-[-l | --limit] # Limit results
-[-u | --user] # By user, required if you want to search private repos
-
+```
+[Options] for search.
+- [-l | --limit] # Limit results
+- [-u | --user] # By user, required if you want to search private repos
+```bash
 # Destroy basic:
 $ gogs repo destroy irstacks my-exterminable-repo
 $ gogs repo destroy irstacks/my-other-exterminable-repo
 # [Aliases] for destroy.
 $ gogs repo [destroy|delete|d|rid]
-
+```
+```bash
 # Help?!
 # Add --help after any command to see what's up, ie.
 $ gogs --help
