@@ -89,6 +89,11 @@ $ gogs repo [create|new|c|n]
 [-p | --private] # Make repo private
 [-r | --add-remote] # Add newly created gogs repo as a remote to your current git dir, initalizing git if necessary
 
+# Migrate:
+$ gogs repo migrate <myusername or my org's username>/mirror-mirror https://github.com/gogits/gogs.git
+[-m | --mirror] # Make it a mirror of the original.
+[-p | --private] # Make it private.
+
 # List basic:
 $ gogs repo list # Get all yo repos.
 
