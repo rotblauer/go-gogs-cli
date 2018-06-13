@@ -9,18 +9,19 @@ import (
 )
 
 // Flags.
-var	migrateMirror bool
+var migrateMirror bool
 var migratePrivate bool
 
 func unusableUsage() {
 	fmt.Println("Please argue me <user|organization>/<name-of-new-repo> <http://url.of.cloneable.repo.git>")
 	return
 }
+
 // migrateCmd represents the migrate command
 var migrateCmd = &cobra.Command{
 	Aliases: []string{"m"},
-	Use:   "migrate, m",
-	Short: "Migrate a repository from a given remote source.",
+	Use:     "migrate, m",
+	Short:   "Migrate a repository from a given remote source.",
 	Long: `Usage:
 
 $ gogs repo migrate irstacks/copycat https://github.com/gogits/gogs.git
@@ -73,7 +74,7 @@ Options:
 		}
 
 		opts.CloneAddr = migrateUrl
-	  opts.RepoName = ownernameReponame[1]
+		opts.RepoName = ownernameReponame[1]
 		opts.Mirror = migrateMirror
 		opts.Private = migratePrivate
 
@@ -84,7 +85,7 @@ Options:
 		}
 
 		fmt.Println("Repo migrated! Woohoo!")
-	  printRepo(repo)
+		printRepo(repo)
 	},
 }
 

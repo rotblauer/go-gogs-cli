@@ -97,7 +97,7 @@ func initConfig() {
 		fmt.Println("No configuration file found. Is there for sure one at $HOME/.go-gogs-cli.yaml?")
 	}
 
-	// These should override any configFile or env vars. 
+	// These should override any configFile or env vars.
 	if tokenArg != "" {
 		viper.Set("token", tokenArg)
 	}

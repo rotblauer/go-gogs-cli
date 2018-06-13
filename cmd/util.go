@@ -1,4 +1,3 @@
-
 package cmd
 
 import (
@@ -23,7 +22,6 @@ func getUserByName(userName string) (user *gogs.User, err error) {
 
 	return user, err
 }
-
 
 // This sucker is really annoying. Gogs Client says that search is a thing.
 // And it is, it does work.
